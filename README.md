@@ -90,13 +90,14 @@ the workup schema. Output is validated (action and status enums, one
 assessment entry per requirement) with one corrective retry. Any residual
 validation problems are stored on the result rather than silently dropped.
 
-**UI: Streamlit, queue-first.** For 80 cases a day the analyst needs two
+**UI: Streamlit, queue-first.** For 80 cases a day, the analyst needs two
 things: a queue where recommendation, confidence and flag count are visible
 at a glance so the clean represents can be batched fast, and a detail view
 where every requirement verdict points at the exact document and location so
 checking a date does not mean opening four PDFs. The rationale is an editable
-text box, ready to file. Overrides require a reason and are logged to
-`results/overrides.jsonl` with a timestamp. In production that log is the
+text box, ready to file. 
+Overrides require a reason and are logged to
+`results/overrides.jsonl` with a timestamp. In production, that log is the
 feedback loop: recurring overrides on a reason code tell you where the
 prompt, the rules data, or the model is falling short.
 
@@ -126,13 +127,18 @@ app.py                     Streamlit analyst UI
 results/                   cached workups and override log (gitignored)
 ```
 
-## What I would do next at real volume
+## What I would build next
 
-Cost and latency controls (triage model first pass, document caching),
-representment letter generation from the approved rationale, scheme rule
-versioning with effective dates, and override-log analytics feeding prompt
-and rules improvements. All out of scope for a 4-6 hour exercise, all
-straightforward extensions of this structure.
+A production queue doing 80 cases per analyst
+per day would need cost controls before anything else, starting with a
+cheaper model doing a first pass triage and per-document caching so the same
+evidence file is never processed twice. After that, the obvious extensions
+are generating the representment letter directly from the approved rationale,
+versioning the scheme rules with effective dates so a past workup can always
+be checked against the rule that was actually in force when it was made, and
+mining the override log to find where the tool and the analysts disagree,
+because that is where the next round of prompt and rules improvements comes
+from.
 
 ## Sample outputs
 
