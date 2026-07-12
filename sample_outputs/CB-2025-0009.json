@@ -1,0 +1,51 @@
+{
+  "case_id": "CB-2025-0009",
+  "model": "claude-sonnet-4-6",
+  "validation_problems": [],
+  "reason_code_summary": "The issuer alleges that the cardholder was charged EUR 215.00 as a no-show fee and disputes its validity. To defend under Mastercard reason code 4859, the merchant must demonstrate: (1) a confirmed original reservation, (2) the no-show or cancellation policy as disclosed at the time of booking, (3) evidence that the cardholder failed to arrive or cancelled outside the permitted window, and (4) that the fee charged matches the disclosed policy. All four requirements must be satisfied for a defensible representment.",
+  "evidence_assessment": [
+    {
+      "requirement": "Evidence of the cardholder's original reservation or booking",
+      "status": "satisfied",
+      "document": "CB-2025-0009_booking_confirmation.pdf",
+      "location": "Page 1, booking summary table",
+      "notes": "Booking confirmation ref MSP-2025-4488 shows guest K. Adler, check-in 26 April 2025, Classic Double for EUR 215.00, charged to Mastercard **** 4421 at time of booking on 12 March 2025. This aligns with the transaction metadata.",
+      "confidence": "high"
+    },
+    {
+      "requirement": "The merchant's no-show / cancellation policy as disclosed at booking",
+      "status": "satisfied",
+      "document": "CB-2025-0009_cancellation_policy.pdf",
+      "location": "Page 1, Non-refundable rate section",
+      "notes": "Policy document states the rate is non-refundable and that no refund will be issued for cancellation, modification, no-show, or early departure. It records that the guest accepted this via tick-box consent on 12 March 2025 at 09:14 CET (consent_id: cns_4488a). The booking confirmation independently reiterates the non-refundable nature of the rate.",
+      "confidence": "medium"
+    },
+    {
+      "requirement": "Evidence the cardholder either failed to show or cancelled outside the policy window",
+      "status": "satisfied",
+      "document": "CB-2025-0009_front_desk_log.pdf",
+      "location": "Page 1, entries for 26 Apr 2025 22:00 and 27 Apr 2025 00:30",
+      "notes": "Front desk log records that the guest had not arrived by 22:00 on check-in date with no contact made, and that the booking was formally marked as a no-show at 00:30 on 27 April 2025 after the room was held until the midnight cut-off. The log references booking MSP-2025-4488 and staff names are recorded.",
+      "confidence": "medium"
+    },
+    {
+      "requirement": "Evidence the fee charged matches the policy disclosed",
+      "status": "satisfied",
+      "document": "CB-2025-0009_booking_confirmation.pdf",
+      "location": "Page 1, Rate field; cross-referenced with CB-2025-0009_front_desk_log.pdf, Page 1, entry 27 Apr 2025 07:15",
+      "notes": "The booked rate was EUR 215.00 (non-refundable, charged at booking), which exactly matches the disputed chargeback amount. The front desk log confirms the full amount was retained as the no-show fee per non-refundable T&Cs. There is no discrepancy between the fee retained and the amount disclosed at booking.",
+      "confidence": "high"
+    }
+  ],
+  "representment_rationale": "Hotel Marais Saint-Paul has provided a booking confirmation (ref MSP-2025-4488) establishing that K. Adler reserved a Classic Double room for the night of 26 April 2025 at a non-refundable rate of EUR 215.00, charged to the disputing card at the time of booking on 12 March 2025. The cancellation policy document confirms that the non-refundable terms were disclosed and accepted by the guest via tick-box consent at 09:14 CET on 12 March 2025 (consent_id: cns_4488a), with no refund applicable in the event of a no-show. The hotel's front desk log records that the guest failed to arrive on 26 April 2025, that no contact was received, and that the booking was formally marked as a no-show at 00:30 on 27 April 2025 after the room was held until the midnight cut-off. The EUR 215.00 retained exactly matches the non-refundable rate disclosed at the time of booking, satisfying the requirement that the fee charged corresponds to the disclosed policy.",
+  "recommended_action": "represent",
+  "action_justification": "All four compelling evidence requirements are satisfied by the documents provided and the evidence is consistent with the transaction metadata.",
+  "evidence_requests": [],
+  "analyst_flags": [
+    "The cancellation policy document is a merchant-produced internal record, not a screenshot or system export of the actual booking page presented to the guest. Consent_id cns_4488a is referenced but no independent audit trail or booking system export is provided to corroborate that the tick-box was actually presented and completed. This is medium risk but not fatal given the booking confirmation independently references the non-refundable rate.",
+    "The front desk log is also a merchant-produced internal document. There is no third-party corroboration (e.g. property management system export) confirming the no-show. An analyst should consider whether the issuer is likely to challenge this as self-serving, and whether a PMS extract would strengthen the filing.",
+    "Transaction date in the case metadata is 26 April 2025 at 11:00 UTC, which precedes the check-in time of 15:00 on the same date. This is consistent with a pre-authorisation or advance charge at booking being posted on the check-in date, but the analyst should verify with the merchant that txn_9967QR represents the original booking charge rather than a separate no-show charge posted on the day, as this affects how the transaction is characterised.",
+    "AVS result Y, CVV M, and 3DS authenticated -- these all support the legitimacy of the original transaction and are consistent with a genuine cardholder booking. No fraud indicators are present in the transaction metadata.",
+    "The issuer narrative is unusually sparse ('Cardholder disputes that the charge is valid') and does not articulate a specific reason for the dispute beyond non-recognition of the fee. The analyst should confirm whether the cardholder is claiming they did in fact arrive, or is simply contesting the non-refundable terms, as the appropriate representment emphasis may differ."
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "case_id": "CB-2025-0001",
+  "model": "claude-sonnet-4-6",
+  "validation_problems": [],
+  "reason_code_summary": "The cardholder alleges that goods ordered on 22 March 2025 from NorthernThread Apparel were never received, and has raised a chargeback under Visa reason code 13.1 (Merchandise / Services Not Received). To defend the dispute, the merchant must provide proof of delivery including a tracking number, carrier name, and confirmation of delivery to the cardholder's address, and must show that delivery occurred on or before the chargeback date of 18 April 2025. The delivery address used by the carrier must also materially match the address provided by the cardholder at purchase.",
+  "evidence_assessment": [
+    {
+      "requirement": "Proof of delivery: tracking number, carrier name, and confirmation of delivery to cardholder's address",
+      "status": "satisfied",
+      "document": "CB-2025-0001_delivery_confirmation.pdf",
+      "location": "Tracking event table and Proof of Delivery statement",
+      "notes": "Royal Mail tracking number RM98421144GB is confirmed. The document is issued by Royal Mail and shows a signed delivery event at SW4 7QR on 24 March 2025 at 11:47, signed by WHITFORD. All three elements (tracking number, carrier name, delivery confirmation) are present.",
+      "confidence": "high"
+    },
+    {
+      "requirement": "For services: evidence the service was rendered on or before the expected date",
+      "status": "satisfied",
+      "document": null,
+      "location": null,
+      "notes": "This transaction is for physical goods (clothing, MCC 5651), not services, so this requirement does not apply.",
+      "confidence": "high"
+    },
+    {
+      "requirement": "Date of delivery is on or before the chargeback date",
+      "status": "satisfied",
+      "document": "CB-2025-0001_delivery_confirmation.pdf",
+      "location": "Tracking event table, final row",
+      "notes": "Delivery is recorded as 24 March 2025, which is 25 days before the chargeback date of 18 April 2025. This requirement is clearly met.",
+      "confidence": "high"
+    },
+    {
+      "requirement": "Delivery address materially matches the address provided by the cardholder at purchase",
+      "status": "satisfied",
+      "document": "CB-2025-0001_carrier_tracking.pdf",
+      "location": "Shipping address field and Dispatch & Delivery section",
+      "notes": "The cardholder's shipping address at purchase was 22 Cavendish Court, London SW4 7QR, which matches exactly the recipient address on the Royal Mail confirmation and the postcode recorded at delivery. The billing and shipping postcodes in the transaction metadata (SW4 7QR) are also consistent.",
+      "confidence": "high"
+    }
+  ],
+  "representment_rationale": "Royal Mail tracking reference RM98421144GB confirms that the order was dispatched on 23 March 2025 and delivered to 22 Cavendish Court, London SW4 7QR on 24 March 2025 at 11:47, where it was signed for by WHITFORD. The delivery address matches precisely the shipping address provided by the cardholder at the time of purchase, and the transaction metadata shows a full AVS match, CVV match, and 3DS authentication. Delivery was completed 25 days before the chargeback was raised on 18 April 2025, satisfying the requirement that goods be delivered on or before the chargeback date. All four compelling evidence requirements for Visa 13.1 are met, and the case is suitable for representment.",
+  "recommended_action": "represent",
+  "action_justification": "All four compelling evidence requirements for Visa 13.1 are satisfied by the Royal Mail delivery confirmation and the merchant order record.",
+  "evidence_requests": [],
+  "analyst_flags": [
+    "The signature recorded by Royal Mail is 'WHITFORD', which matches the customer surname M. Whitford on the order. This is a positive indicator, but the analyst should note that the cardholder has apparently denied receipt despite this signed delivery record. It may be worth the merchant providing a copy of the actual signature image from Royal Mail if available, should the issuer push back after initial representment.",
+    "The order confirmation document (CB-2025-0001_carrier_tracking.pdf) is a merchant-generated record. It corroborates but does not independently verify delivery. The Royal Mail document (CB-2025-0001_delivery_confirmation.pdf) is the primary carrier-sourced evidence and should be the lead exhibit in the representment filing.",
+    "The issuer narrative states the cardholder contacted the merchant twice with no resolution. There is no evidence of merchant communications or a refusal to resolve in the submitted documents. This does not undermine the delivery evidence but may be raised by the issuer; the analyst may wish to confirm whether any correspondence exists."
+  ]
+}

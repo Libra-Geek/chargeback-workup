@@ -1,0 +1,55 @@
+{
+  "case_id": "CB-2025-0008",
+  "model": "claude-sonnet-4-6",
+  "validation_problems": [],
+  "reason_code_summary": "The cardholder alleges they cancelled their FluxFit Online subscription on 18 March 2025 but were charged \u00a329.99 on 20 April 2025, raising a Visa 13.2 Cancelled Recurring Transaction dispute. To defend this chargeback, the merchant must demonstrate: (1) terms disclosing the recurring arrangement and cancellation method; (2) advance notification of the upcoming charge; (3) no cancellation request on record prior to the billing date; and (4) the cardholder's original opt-in to the recurring arrangement. All four requirements must be satisfied for a representment to be defensible.",
+  "evidence_assessment": [
+    {
+      "requirement": "Terms of service disclosing recurring billing and cancellation method",
+      "status": "partial",
+      "document": "CB-2025-0008_subscription_terms.pdf",
+      "location": "Page 1, paragraphs 1-2",
+      "notes": "The terms document clearly discloses monthly auto-renewal and two cancellation methods (dashboard or email). However, it is a generic published document with no evidence it was presented to or accepted by this specific cardholder at the point of signup, which weakens its standalone value.",
+      "confidence": "medium"
+    },
+    {
+      "requirement": "Evidence cardholder was notified of upcoming charge 7+ days in advance",
+      "status": "missing",
+      "document": "CB-2025-0008_subscription_terms.pdf",
+      "location": "Page 1, paragraph 3",
+      "notes": "The terms state members will be notified at least 5 days prior to renewal, which itself falls short of the 7-day threshold commonly required by Visa for transactions above a defined amount. Critically, no actual renewal notification email or delivery record for this cardholder has been provided.",
+      "confidence": "high"
+    },
+    {
+      "requirement": "No record of cardholder cancellation request prior to billing date",
+      "status": "missing",
+      "document": null,
+      "location": null,
+      "notes": "No cancellation log, support ticket history, account activity record, or email correspondence has been provided. The issuer narrative specifically states the cardholder cancelled on 18 March 2025, over a month before the 20 April 2025 charge, and this claim is entirely unanswered by the evidence submitted.",
+      "confidence": "high"
+    },
+    {
+      "requirement": "Evidence of cardholder's original opt-in to the recurring arrangement",
+      "status": "missing",
+      "document": null,
+      "location": null,
+      "notes": "No signup record, checkout confirmation, terms acceptance log, or account creation data has been provided to demonstrate this specific cardholder consented to the recurring billing arrangement.",
+      "confidence": "high"
+    }
+  ],
+  "representment_rationale": "The sole document submitted is a generic published terms sheet that discloses the recurring billing model and cancellation mechanism, but it does not demonstrate that this cardholder ever accepted those terms, nor does it address any of the remaining three requirements. The merchant has provided nothing to rebut the cardholder's central claim that a cancellation was submitted on 18 March 2025, more than a month before the disputed charge. There is also no renewal notification on record for this cardholder, and the terms themselves only commit to 5 days' notice, which may be insufficient under the applicable Visa threshold rules. With three of four compelling evidence requirements entirely unmet and the cancellation allegation left unanswered, the case is not defensible in its current state.",
+  "recommended_action": "request_more_evidence",
+  "action_justification": "Three of four requirements are missing entirely, including the critical cancellation log that directly determines liability; further merchant evidence is needed before a representment decision can be made.",
+  "evidence_requests": [
+    "Cancellation log or account activity records for this cardholder showing no cancellation request was received prior to 20 April 2025, or conversely identifying any request received and how it was handled.",
+    "Signed or logged opt-in record confirming this specific cardholder accepted the recurring billing terms at signup (e.g. checkout confirmation email, timestamped terms acceptance record, or account creation log).",
+    "Renewal notification email sent to this cardholder in advance of the 20 April 2025 charge, including send date, recipient email address, and any delivery or open confirmation.",
+    "Full account history for this cardholder showing subscription status, payment history, and any support interactions around the alleged 18 March 2025 cancellation date."
+  ],
+  "analyst_flags": [
+    "The terms document commits to only 5 days' advance notice of renewal. If Visa's threshold rules for this transaction amount require 7+ days' notification, the merchant's own policy may be non-compliant regardless of whether a notification was sent. Confirm the applicable advance-notice threshold before filing.",
+    "The cardholder claims cancellation on 18 March 2025, which is 33 days before the disputed charge. If the merchant's cancellation log confirms a request was received on or around that date and the charge was processed regardless, liability is clear and the case should be accepted without further delay.",
+    "The terms document is version terms_v3.2, published February 2025. There is no confirmation this is the version in force at the time the cardholder originally subscribed. If the cardholder subscribed under an earlier version with different cancellation terms, this document may not be applicable.",
+    "No IP address or device fingerprint is recorded against the transaction, which limits the merchant's ability to corroborate account access or cardholder identity beyond AVS/CVV match data."
+  ]
+}

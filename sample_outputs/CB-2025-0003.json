@@ -1,0 +1,49 @@
+{
+  "case_id": "CB-2025-0003",
+  "model": "claude-sonnet-4-6",
+  "validation_problems": [],
+  "reason_code_summary": "The issuer alleges the cardholder did not authorise the transaction of EUR 1,240.50 at Velo Continental Rentals on 1 April 2025, claiming their card details may have been compromised. Under Mastercard reason code 4837, the merchant must satisfy any two of four prescribed compelling evidence requirements to mount a defensible representment. The requirements cover AVS and CVV matching, successful 3D Secure authentication, two prior undisputed transactions with matching billing details, and proof of delivery to the billing address with signature.",
+  "evidence_assessment": [
+    {
+      "requirement": "AVS full address match AND CVV match on the disputed transaction",
+      "status": "satisfied",
+      "document": "CB-2025-0003_avs_cvv_log.pdf",
+      "location": "Page 1, rows 'AVS check (full address)' and 'CVV check'",
+      "notes": "The gateway log records AVS result 'Y' (full match) and CVV result 'M' (match) for txn_4412EF. Both values are consistent with the transaction metadata supplied in the case data, and the billing postcode 75011 aligns with the card BIN country of France.",
+      "confidence": "high"
+    },
+    {
+      "requirement": "3D Secure authentication completed successfully (Mastercard SecureCode / Identity Check)",
+      "status": "satisfied",
+      "document": "CB-2025-0003_3ds_authentication.pdf",
+      "location": "Page 1, fields 'Outcome', 'ECI', 'Authentication value', and 'DS transaction ID'",
+      "notes": "The Mastercard Identity Check authentication record confirms outcome AUTHENTICATED (frictionless), ECI 02, a present authentication value, and a Directory Server transaction ID (ds_4b2e1100c4), all tied to txn_4412EF. The issuer named is BNP Paribas, meaning the cardholder's own bank performed and approved the authentication, which shifts liability to the issuer under the Mastercard scheme.",
+      "confidence": "high"
+    },
+    {
+      "requirement": "Two prior undisputed transactions from the same cardholder in the past 12 months with matching billing details",
+      "status": "missing",
+      "document": null,
+      "location": null,
+      "notes": "No transaction history or prior order records have been provided. The device fingerprint note ('returning device, seen 3x') is suggestive but is a merchant-side assertion and does not on its own satisfy this requirement.",
+      "confidence": "high"
+    },
+    {
+      "requirement": "Proof of delivery to the cardholder's billing address with signature",
+      "status": "missing",
+      "document": null,
+      "location": null,
+      "notes": "No delivery confirmation or signed proof of delivery has been provided. Note that the merchant MCC is 7512 (car rental), so a physical delivery document may not be applicable; however, no rental completion record or signed rental agreement has been submitted either.",
+      "confidence": "high"
+    }
+  ],
+  "representment_rationale": "The cardholder disputes authorisation of the EUR 1,240.50 transaction at Velo Continental Rentals on 1 April 2025, citing possible card compromise. Two independent compelling evidence requirements are fully satisfied on the documentation provided. First, the payment gateway authorisation log confirms both a full AVS address match (result Y) and a CVV match (result M) on the disputed transaction, consistent with the case metadata. Second, the Mastercard Identity Check authentication record confirms that the cardholder's own issuing bank, BNP Paribas, authenticated the transaction under 3D Secure 2 with ECI 02 and a valid authentication value, which under Mastercard scheme rules shifts fraud liability to the issuer. The presence of two satisfied requirements is sufficient to support representment without reliance on the remaining two requirements.",
+  "recommended_action": "represent",
+  "action_justification": "Two compelling evidence requirements (AVS/CVV match and successful 3DS authentication) are independently and fully satisfied, meeting the scheme threshold for a defensible representment.",
+  "evidence_requests": [],
+  "analyst_flags": [
+    "The 3DS outcome is recorded as 'frictionless'. While ECI 02 is a fully authenticated result under Mastercard rules, some issuers challenge frictionless authentications on the basis that no active cardholder step-up occurred. The analyst should verify that the DS transaction ID (ds_4b2e1100c4) can be independently validated via the scheme's authentication inquiry service before filing, as the authentication value is partially redacted in the document.",
+    "The merchant MCC is 7512 (car and truck rental). The chargeback amount of EUR 1,240.50 is sizeable for a rental transaction. The analyst may wish to confirm from the merchant whether a signed rental agreement or ID verification was obtained at point of service, as this could further strengthen the file even though it is not required to meet the two-requirement threshold.",
+    "The device fingerprint note states the device was 'seen 3x', which could support a prior-transactions argument, but no formal transaction history document has been provided. If the issuer escalates or arbitration is required, the analyst should request a full transaction history extract from the merchant to substantiate this."
+  ]
+}

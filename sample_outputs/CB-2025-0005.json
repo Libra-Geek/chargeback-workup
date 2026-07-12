@@ -1,0 +1,41 @@
+{
+  "case_id": "CB-2025-0005",
+  "model": "claude-sonnet-4-6",
+  "validation_problems": [],
+  "reason_code_summary": "The issuer alleges that Roastline Coffee Co processed the same transaction twice on 12 April 2025, resulting in two charges of \u00a354.00 to the cardholder's account when only one purchase was made. To defend this chargeback under Visa reason code 12.6.1, the merchant must demonstrate that the two charges relate to two entirely separate purchase events, supported by distinct documentation for each and the respective transaction timestamps and authorisation codes.",
+  "evidence_assessment": [
+    {
+      "requirement": "Evidence the two transactions are for two separate purchases (different order IDs, items, or services)",
+      "status": "satisfied",
+      "document": "CB-2025-0005_invoice_order_A.pdf and CB-2025-0005_invoice_order_B.pdf",
+      "location": "Order ID and item lines on each invoice",
+      "notes": "Order A (RL-ORDER-44188) contains coffee beans; Order B (RL-ORDER-44192) contains an Aeropress Go starter kit and filter papers. The order IDs, basket contents, and invoice numbers are entirely distinct, clearly establishing two separate purchase events.",
+      "confidence": "high"
+    },
+    {
+      "requirement": "Documentation of each purchase event (separate invoices, delivery confirmations, service dates)",
+      "status": "satisfied",
+      "document": "CB-2025-0005_invoice_order_A.pdf and CB-2025-0005_invoice_order_B.pdf",
+      "location": "Delivery fields on each invoice",
+      "notes": "Each invoice carries its own invoice number, order date, itemised basket, and DPD tracking reference (Order A: 7711224488, delivered 14 April; Order B: 7711224501, delivered 15 April), providing independent documentary evidence of two fulfilled purchase events.",
+      "confidence": "high"
+    },
+    {
+      "requirement": "Transaction timestamps and authorisation codes for each charge",
+      "status": "satisfied",
+      "document": "CB-2025-0005_invoice_order_A.pdf and CB-2025-0005_invoice_order_B.pdf",
+      "location": "Auth code lines on each invoice",
+      "notes": "Order A records auth code 442189 captured at 08:11:33 BST on 12 April 2025, matching the transaction metadata exactly. Order B records a distinct auth code 552781 captured at 19:42:18 BST on 12 April 2025, confirming a second independently authorised transaction over eleven hours later.",
+      "confidence": "high"
+    }
+  ],
+  "representment_rationale": "The cardholder was charged \u00a354.00 twice on 12 April 2025 because two separate orders were placed on that date, not because the same transaction was processed twice. Order A (RL-ORDER-44188, auth code 442189, 08:11 BST) covered coffee beans delivered on 14 April under DPD tracking 7711224488, while Order B (RL-ORDER-44192, auth code 552781, 19:42 BST) covered an Aeropress Go starter kit and filter papers delivered on 15 April under a separate DPD consignment 7711224501. The two orders carry distinct invoice numbers, entirely different line items, separate authorisation codes, and independent delivery confirmations, collectively demonstrating that both charges represent legitimate and fulfilled purchase events. The chargeback characterisation of duplicate processing is therefore not supported by the transaction record.",
+  "recommended_action": "represent",
+  "action_justification": "All three compelling evidence requirements are satisfied with high confidence by the two invoices provided.",
+  "evidence_requests": [],
+  "analyst_flags": [
+    "The disputed transaction in the case metadata (txn_5523IJ, 08:11:33 BST, auth code 442189) corresponds to Order A only. The second charge (Order B, 19:42 BST) does not appear in the case metadata, so the analyst should confirm that Order B was also captured and settled on the same card before filing, and obtain the corresponding transaction ID if available.",
+    "The merchant's note on invoice_order_B ('Both charges are valid') is an assertion and carries no evidential weight on its own; however, the objective documentary evidence in both invoices is independently sufficient without relying on that statement.",
+    "The analyst may wish to request the DPD tracking confirmation pages directly from the carrier to further corroborate delivery of both orders, though this is not strictly required given the strength of the existing evidence."
+  ]
+}

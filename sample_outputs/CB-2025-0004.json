@@ -1,0 +1,50 @@
+{
+  "case_id": "CB-2025-0004",
+  "model": "claude-sonnet-4-6",
+  "validation_problems": [],
+  "reason_code_summary": "The issuer alleges that the cardholder did not authorise the transaction of \u00a387.40 on 29 April 2025 with QuickStream Digital, and that the cardholder has no relationship with this merchant. To defend under Mastercard reason code 4837, the merchant must satisfy any two of four defined compelling evidence requirements: full AVS and CVV match; successful 3D Secure authentication; two prior undisputed transactions from the same cardholder with matching billing details in the past 12 months; or proof of delivery to the cardholder's billing address with signature.",
+  "evidence_assessment": [
+    {
+      "requirement": "AVS match (full address) AND CVV match on the disputed transaction",
+      "status": "missing",
+      "document": null,
+      "location": null,
+      "notes": "Transaction metadata records AVS result as 'N' and CVV result as 'N', meaning both checks failed. This requirement is not satisfied.",
+      "confidence": "high"
+    },
+    {
+      "requirement": "3D Secure authentication completed successfully",
+      "status": "missing",
+      "document": null,
+      "location": null,
+      "notes": "Transaction metadata records three_ds_status as 'not_attempted'. No 3DS authentication was initiated, let alone completed successfully.",
+      "confidence": "high"
+    },
+    {
+      "requirement": "Two prior undisputed transactions from same cardholder with matching billing details in past 12 months",
+      "status": "missing",
+      "document": "CB-2025-0004_internal_fraud_report.pdf",
+      "location": "Signals reviewed table, 'Customer account age' row",
+      "notes": "The internal fraud report explicitly records the customer account age as 'New (first transaction)', confirming there are no prior transactions with this merchant. The requirement for two prior undisputed transactions cannot be satisfied.",
+      "confidence": "high"
+    },
+    {
+      "requirement": "Proof of delivery to cardholder's billing address with signature",
+      "status": "missing",
+      "document": null,
+      "location": null,
+      "notes": "No delivery or fulfilment evidence has been provided. The merchant is classified under MCC 5815 (digital goods), but no access logs, download records, or any equivalent delivery proof have been submitted.",
+      "confidence": "high"
+    }
+  ],
+  "representment_rationale": "The merchant has submitted only an internal fraud screening report, which reflects the merchant's own risk scoring engine and its conclusion that the transaction appeared legitimate. A merchant's internal risk assessment and confident assertions of legitimacy do not constitute compelling evidence under Mastercard scheme rules and cannot satisfy any of the four defined requirements. Both AVS and CVV checks failed at the time of the transaction, 3D Secure was not attempted, the customer account was brand new with no prior transaction history, and no proof of delivery has been provided. Not a single compelling evidence requirement is satisfied, and the case cannot be defended on the evidence available.",
+  "recommended_action": "accept_liability",
+  "action_justification": "Zero of the required two compelling evidence criteria are satisfied; the sole document submitted carries no evidential weight under the applicable rules.",
+  "evidence_requests": [],
+  "analyst_flags": [
+    "Transaction occurred at 03:42 UTC on a new customer account with a previously unseen device fingerprint (fp_new_unseen). These are material fraud indicators that corroborate the issuer's narrative rather than contradicting it.",
+    "The IP address (45.227.255.103) has not been cross-checked against the cardholder's billing postcode (E14 5AB). If the merchant can provide geo-IP data, it is unlikely to help but the analyst may wish to confirm.",
+    "MCC 5815 (digital goods) means physical delivery proof is inherently unavailable. The merchant should have been collecting 3DS authentication or at minimum passing AVS/CVV; the absence of both is a significant gap.",
+    "The internal fraud report notes the transaction was the customer's first interaction with the merchant and was placed at an off-peak hour. These factors do not support legitimacy and the merchant's 'LOW risk' conclusion appears to weight amount and blocklist match over behavioural signals."
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "case_id": "CB-2025-0002",
+  "model": "claude-sonnet-4-6",
+  "validation_problems": [],
+  "reason_code_summary": "The cardholder claims the goods purchased on 9 April 2025 for \u00a3642.00 were never received, and further asserts that the delivery address on the order is not their address and that they did not authorise delivery to it. To defend under Visa 13.1, the merchant must demonstrate: confirmed delivery via a named carrier with a tracking number to the cardholder's address; that delivery occurred on or before the chargeback date; and that the address delivered to materially matches the address the cardholder provided at purchase.",
+  "evidence_assessment": [
+    {
+      "requirement": "Proof of delivery: tracking number, carrier name, and confirmation of delivery to the cardholder's address",
+      "status": "partial",
+      "document": "CB-2025-0002_tracking_screenshot.png",
+      "location": "Tracking number, Status, Deliver to fields",
+      "notes": "The screenshot shows carrier DPDx, tracking number 15441288821100, and a DELIVERED status to Flat 14, 7 Aspen Wharf, Manchester M1 7DR on 10 April 2025. However, the parcel was left in a safe place without a signature, and the cardholder expressly disputes that this is their address, which undermines the evidential weight of this delivery confirmation.",
+      "confidence": "medium"
+    },
+    {
+      "requirement": "For services: evidence the service was rendered on or before the expected date",
+      "status": "satisfied",
+      "document": null,
+      "location": null,
+      "notes": "This requirement applies to services only; the transaction is for physical goods (MCC 5732, electronics), so it is not applicable.",
+      "confidence": "high"
+    },
+    {
+      "requirement": "Date of delivery / service rendered is on or before the chargeback date",
+      "status": "satisfied",
+      "document": "CB-2025-0002_tracking_screenshot.png",
+      "location": "Delivered field",
+      "notes": "Delivery is recorded as 10 April 2025, which is prior to the chargeback date of 2 May 2025.",
+      "confidence": "high"
+    },
+    {
+      "requirement": "Delivery address materially matches the address provided by the cardholder at purchase",
+      "status": "partial",
+      "document": "CB-2025-0002_order_confirmation.pdf",
+      "location": "Shipping address field, page 1",
+      "notes": "The shipping address on the order confirmation (M1 7DR) matches the tracking screenshot and the shipping postcode in the transaction metadata. However, the billing address postcode on file is M14 5RT, which differs from the shipping postcode M1 7DR, and AVS returned a failure (result N). The cardholder's claim that the shipping address is not theirs is consistent with the AVS mismatch and the billing/shipping postcode discrepancy, materially weakening this requirement.",
+      "confidence": "low"
+    }
+  ],
+  "representment_rationale": "LumaTech Electronics has provided a DPDx tracking record confirming delivery of order LT-200931 to Flat 14, 7 Aspen Wharf, Manchester M1 7DR on 10 April 2025, prior to the chargeback date of 2 May 2025, and an order confirmation showing that the customer entered that shipping address at checkout. However, the cardholder asserts that the delivery address is not their address and that they did not authorise delivery to it, and this assertion is materially corroborated by the transaction metadata: the billing address postcode on file (M14 5RT) does not match the shipping postcode (M1 7DR), and AVS returned a failure. The parcel was not signed for, having been left in a safe place, meaning there is no independent confirmation that the cardholder or an authorised person took receipt. The merchant's order confirmation note that the address was entered by the customer at checkout is an assertion by the merchant and does not in itself rebut the cardholder's claim, particularly in the context of an AVS failure. On the evidence as it stands, the delivery address match requirement is not satisfactorily met, and the case carries a meaningful risk of loss at arbitration.",
+  "recommended_action": "request_more_evidence",
+  "action_justification": "The AVS failure and billing/shipping postcode mismatch, combined with the cardholder's denial of the shipping address, mean the address-match requirement is not adequately satisfied on current evidence; additional documentation is needed before a representment decision can be made.",
+  "evidence_requests": [
+    "Geo-location or IP address lookup at the time of checkout, confirming the session IP (188.29.44.179) is associated with the shipping postcode M1 7DR rather than billing postcode M14 5RT.",
+    "Any account registration or profile data showing that M1 7DR was a previously saved or verified address for this customer, or that the customer had a history of orders to this address.",
+    "Proof of identity linkage between the shipping address and the cardholder: for example, a prior successful delivery to the same address, or any communication from the cardholder referencing Flat 14, 7 Aspen Wharf.",
+    "DPDx delivery photograph or GPS confirmation log, if available, showing the parcel at the stated delivery address.",
+    "Any email, SMS, or in-app delivery notification sent to the cardholder's registered contact details confirming the delivery, which would show the cardholder was notified and did not raise an immediate dispute."
+  ],
+  "analyst_flags": [
+    "Critical: AVS result is N, meaning the billing address postcode supplied at authorisation (M14 5RT) did not match the issuer's records. The shipping address postcode is M1 7DR. These are materially different postcodes in Manchester. The cardholder's claim that the shipping address is not theirs is consistent with this mismatch and should be treated seriously.",
+    "The parcel was left in a safe place (front porch) with no signature. This substantially weakens proof of delivery as evidence that the cardholder personally received the goods.",
+    "3DS status is 'attempted' only, not fully authenticated. Liability shift protection under 3DS is unlikely to apply, leaving the merchant exposed.",
+    "The order confirmation states 'this address was entered by the customer at checkout' but this is a merchant's own assertion and is not compelling evidence in itself, particularly against an AVS failure.",
+    "The high-value nature of the goods (Sony headphones and Apple iPad, \u00a3642 total) and the pattern of AVS failure, non-matching postcodes, and a safe-place delivery are consistent with a fraudulent order where genuine cardholder credentials were used to purchase goods to an unrelated address. The analyst should consider whether this may also warrant a fraud referral or internal review."
+  ]
+}

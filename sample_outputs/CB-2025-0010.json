@@ -1,0 +1,16 @@
+{
+  "case_id": "CB-2025-0010",
+  "model": "claude-sonnet-4-6",
+  "validation_problems": [],
+  "reason_code_summary": "The issuer has raised this chargeback under Visa reason code 10.5, which relates to Visa's Fraud Monitoring Programme. This reason code is used when a transaction has been flagged through Visa's own fraud monitoring processes rather than as a result of a specific cardholder dispute. Under the applicable compelling evidence rules, reason code 10.5 is generally not representable regardless of the strength of the merchant's evidence, unless the merchant can demonstrate that the issuer miscoded the chargeback and the correct reason code should have been applied.",
+  "evidence_assessment": [],
+  "representment_rationale": "This chargeback has been raised under Visa reason code 10.5, which relates to the Visa Fraud Monitoring Programme. Under the applicable scheme rules, this reason code is not representable as a general matter, and that position is not altered by the quality of the merchant's evidence. The merchant has submitted a Visa Secure authentication record showing a successful 3DS authentication with ECI 05, as well as a delivery confirmation evidencing signed receipt at the billing address. Whilst this evidence is of good quality and would carry weight under a standard fraud reason code, it does not satisfy the only available basis for representation under 10.5, namely proof that the issuer miscoded the chargeback. Accordingly, liability should be accepted.",
+  "recommended_action": "accept_liability",
+  "action_justification": "Reason code 10.5 is not representable under the applicable rules and the merchant has not provided any evidence of issuer miscodings.",
+  "evidence_requests": [],
+  "analyst_flags": [
+    "The transaction carries strong fraud-mitigating signals: successful 3DS authentication (ECI 05), AVS match, CVV match, billing and shipping postcodes identical, and signed delivery to the billing address. If there is any reason to believe the issuer applied reason code 10.5 in error and the dispute should properly have been raised under a different reason code (for example 10.4 card-absent fraud), the analyst should investigate whether a miscoding argument is viable before accepting liability.",
+    "The CAVV value in the 3DS authentication record is redacted. If a miscoding argument were to be pursued, the analyst should obtain the full unredacted CAVV to support authentication proof.",
+    "The delivery confirmation references a returning customer account with three prior undisputed orders since January 2025. This context may be worth retaining on file in the event of future related disputes or a pattern of chargebacks against this merchant."
+  ]
+}

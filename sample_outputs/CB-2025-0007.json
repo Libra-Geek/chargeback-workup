@@ -1,0 +1,42 @@
+{
+  "case_id": "CB-2025-0007",
+  "model": "claude-sonnet-4-6",
+  "validation_problems": [],
+  "reason_code_summary": "The cardholder alleges they paid GBP 412.75 to TerraFreight Logistics for a freight collection and delivery service that was never performed. Under Mastercard reason code 4855, the merchant must demonstrate proof of delivery or service rendered, confirm the service date falls before the chargeback date of 14 May 2025, and show that the delivery address matches the cardholder's records.",
+  "evidence_assessment": [
+    {
+      "requirement": "Proof of delivery or proof of service rendered (tracking + carrier confirmation, or access logs/attendance/completed booking)",
+      "status": "satisfied",
+      "document": "CB-2025-0007_consolidated_manifest.pdf",
+      "location": "Page 8, consignment TF-9051 entry and narrative paragraph",
+      "notes": "The manifest records consignment TF-9051 (explicitly cross-referenced to transaction txn_7745MN, customer Stentor Bros) as collected at 11:30 and delivered at 17:14 on 22 April 2025, with a POD image referenced as POD-9051-img and noted as signed for by warehouse staff at destination. The POD image itself is not included in the submission but the manifest entry is a contemporaneous operational record naming the transaction reference, which meaningfully corroborates service completion. The analyst should consider requesting the actual POD image to strengthen the file.",
+      "confidence": "medium"
+    },
+    {
+      "requirement": "Date of delivery/service is before the chargeback date",
+      "status": "satisfied",
+      "document": "CB-2025-0007_consolidated_manifest.pdf",
+      "location": "Page 8, consignment TF-9051 entry and narrative paragraph",
+      "notes": "Delivery is recorded as 22 April 2025, which is 22 days before the chargeback date of 14 May 2025. This requirement is clearly met.",
+      "confidence": "high"
+    },
+    {
+      "requirement": "Delivery address matches the cardholder's records",
+      "status": "satisfied",
+      "document": "CB-2025-0007_consolidated_manifest.pdf",
+      "location": "Page 8, consignment TF-9051 row (Pickup and Destination columns)",
+      "notes": "The manifest records the pickup postcode as LS1 4DT and the destination postcode as LS9 8AA, which match exactly the billing address postcode (LS1 4DT) and shipping address postcode (LS9 8AA) in the transaction metadata. Both addresses are consistent with the cardholder's records.",
+      "confidence": "high"
+    }
+  ],
+  "representment_rationale": "The cardholder alleges that a freight collection and delivery service paid for on 22 April 2025 was never performed. TerraFreight Logistics' consolidated weekly manifest (page 8) records consignment TF-9051, explicitly linked to transaction reference txn_7745MN, as collected from LS1 4DT at 11:30 and delivered to LS9 8AA at 17:14 on 22 April 2025, more than three weeks before the chargeback was raised. Both the collection postcode (LS1 4DT) and destination postcode (LS9 8AA) correspond precisely to the billing and shipping addresses recorded in the transaction data, confirming service was rendered to the correct locations. The manifest notes the consignment was signed for by warehouse staff at the destination and that a POD image (POD-9051-img) is held on file. On the basis of this contemporaneous operational record, all three compelling evidence requirements for Mastercard 4855 are satisfied and the chargeback is defensible.",
+  "recommended_action": "represent",
+  "action_justification": "All three scheme requirements are met: service rendered is documented with a transaction cross-reference, delivery predates the chargeback by 22 days, and postcodes match the cardholder's records exactly.",
+  "evidence_requests": [],
+  "analyst_flags": [
+    "The POD image referenced as POD-9051-img is described as being on file but has not been included in the submission. The analyst should consider requesting and attaching this image before filing, as it would materially strengthen the proof-of-delivery element if the issuer escalates.",
+    "The manifest is an internal TerraFreight document rather than an independent carrier confirmation. While it explicitly names the transaction reference and matches case metadata, the analyst should assess whether the issuing bank is likely to require a more independent form of evidence (e.g. driver telematics export or a signed consignment note).",
+    "Pages 1 through 7 and pages 9 and 10 of the manifest are entirely repetitive and contain no data relevant to this transaction. The decisive entry is buried on page 8. This pattern of padding could attract scrutiny; the analyst may wish to note this when preparing the submission.",
+    "The cardholder is identified in the case data by a billing address of LS1 4DT, but the manifest customer name is Stentor Bros rather than an individual cardholder name. The analyst should confirm with the merchant that Stentor Bros is the trading name or entity associated with the card account, to ensure there is no identity mismatch the issuer could exploit."
+  ]
+}

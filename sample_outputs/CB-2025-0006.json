@@ -1,0 +1,48 @@
+{
+  "case_id": "CB-2025-0006",
+  "model": "claude-sonnet-4-6",
+  "validation_problems": [],
+  "reason_code_summary": "The cardholder alleges that the Carlton armchair they received is defective, specifically that the frame wobbles and one leg is not properly seated, rendering it unfit for purpose. They further allege the merchant did not respond to their refund request. To defend under Visa 13.3, the merchant must demonstrate: (1) what was described and sold, (2) that the item delivered matched that description and was not defective, and (3) that a return or refund route was available and not used by the cardholder, or that the cardholder retained the item after complaining.",
+  "evidence_assessment": [
+    {
+      "requirement": "Merchant's published description of the item purchased",
+      "status": "satisfied",
+      "document": "CB-2025-0006_product_listing.pdf",
+      "location": "Page 1, Description and What's in the box fields",
+      "notes": "The listing clearly describes the Carlton Mid-Century Armchair in Sage Velvet (SKU HH-ARM-CARL-SG) at \u00a3329.00, with specifications including a beech frame, oak legs, seat height, and weight rating. Notably, the listing states an allen key is included for leg re-tightening if required during transit, which is directly relevant to the complaint.",
+      "confidence": "high"
+    },
+    {
+      "requirement": "Evidence the item delivered matches that description (photos, specs, serial number match)",
+      "status": "partial",
+      "document": "CB-2025-0006_delivery_photo.png",
+      "location": "Full image, caption",
+      "notes": "The delivery photo shows a sage-coloured armchair consistent in appearance with the listed product and is captioned as the Carlton Armchair (Sage) delivered 18 April 2025, but it is a front-view illustration only and does not show the legs, frame underside, or any structural detail. It cannot rebut the cardholder's specific claim that one leg is not properly seated and the frame wobbles; no serial number, quality-control documentation, or pre-dispatch inspection record is provided.",
+      "confidence": "low"
+    },
+    {
+      "requirement": "Evidence merchant offered a return/refund route and cardholder did not use it, OR cardholder used and retained the merchandise after complaining",
+      "status": "partial",
+      "document": "CB-2025-0006_returns_policy.pdf",
+      "location": "Page 1, Defective items paragraph",
+      "notes": "The returns policy sets out a clear defective-item procedure requiring the cardholder to email within 7 days of delivery with photos. However, there is no correspondence log, email thread, or CRM record showing whether the cardholder actually contacted the merchant or whether the merchant responded. The issuer narrative states the merchant did not respond to the refund request, and the merchant has provided nothing to contradict that allegation.",
+      "confidence": "low"
+    }
+  ],
+  "representment_rationale": "HavenHome has provided a contemporaneous product listing that accurately describes the Carlton armchair purchased by the cardholder, and a delivery photograph that places the correct item at the cardholder's address on 18 April 2025. However, the delivery photograph is a front-view image only and provides no evidence about the condition of the legs or frame, meaning the merchant has not rebutted the specific defect alleged. The returns policy document demonstrates that a free defective-item collection process existed and was communicated to customers, but there is no evidence confirming whether the cardholder attempted to use it or whether the merchant responded to any contact. Critically, there is no correspondence record, repair log, or inspection report that would either confirm the chair was structurally sound on dispatch or show that the cardholder declined a valid remedy.",
+  "recommended_action": "request_more_evidence",
+  "action_justification": "Two of the three requirements are unsatisfied or only partially met; without pre-dispatch quality records or a correspondence log, representment is not currently defensible.",
+  "evidence_requests": [
+    "Pre-dispatch quality control or inspection record for the specific unit shipped to the cardholder, referencing the order or SKU, confirming the legs and frame were structurally sound before despatch.",
+    "Full customer service correspondence log or email thread with the cardholder, showing whether a defect report was received and how or whether the merchant responded.",
+    "Proof of delivery confirmation showing the cardholder's signature or acknowledgement of receipt on 18 April 2025, to establish the timeline relative to the 7-day defective-item notification window.",
+    "Additional delivery photographs showing the legs and underside of the chair, or a carrier's condition-on-delivery report, if available.",
+    "If the cardholder did contact the merchant, any evidence that a remedy (repair, replacement, or collection) was offered and refused or ignored by the cardholder."
+  ],
+  "analyst_flags": [
+    "The product listing itself notes an allen key is included 'for leg re-tightening if required during transit', which implicitly acknowledges that leg instability is a known transit risk. This could cut both ways: it may support the merchant's argument that the remedy was self-evident and documented, or it may support the cardholder's argument that the product was inherently prone to the exact defect complained of. Consider how this is framed if the case proceeds to representment.",
+    "The issuer narrative states the merchant did not respond to the refund request. The merchant has not submitted any evidence contradicting this allegation. If a correspondence log is obtained and confirms no response was sent, this weakens the returns-policy defence significantly.",
+    "The delivery photograph appears to be a stylised illustration rather than an actual photograph, which may attract scrutiny. Confirm with the merchant whether this is a driver-taken photo of the actual delivered item or a stock graphic, as the caption says 'photo taken by driver' but the image is clearly a digital illustration.",
+    "The 7-day defective-item notification window in the returns policy runs from 18 April 2025 delivery, expiring 25 April 2025. The chargeback was filed 8 May 2025. The analyst should establish when the cardholder first raised the defect complaint and whether it fell inside or outside that window."
+  ]
+}
