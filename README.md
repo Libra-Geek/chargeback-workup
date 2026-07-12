@@ -14,7 +14,7 @@ the decision. The analyst owns it.
 ## Quickstart (under 10 minutes)
 
 ```bash
-git clone <this-repo>
+git clone https://github.com/Libra-Geek/chargeback-workup.git
 cd chargeback-workup
 pip install -r requirements.txt
 cp .env.example .env        # add your ANTHROPIC_API_KEY
