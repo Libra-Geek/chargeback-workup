@@ -1,4 +1,4 @@
 anthropic>=0.40.0
 python-dotenv>=1.0.0
 streamlit>=1.38.0
-echo 'numpy<2' >> requirements.txt
+numpy<2
