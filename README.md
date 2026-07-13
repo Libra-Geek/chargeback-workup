@@ -52,14 +52,14 @@ narrative, and every evidence document attached in full.
 Tesseract-style OCR plus text extraction. It is cheaper per page but loses
 document layout, handles photos badly (one case's evidence is a delivery
 photograph), and adds a dependency chain. Claude reads PDFs and images
-natively, so every document goes in whole, untruncated. The deciding factor:
-one provided case buries its decisive proof of delivery on page 8 of a 10-page
-repetitive manifest. Any truncation or lossy extraction risks missing exactly
-the evidence that wins the case. At 10 cases with small files, full-document
-processing costs pennies. The honest limitation: at real volume (80 cases per
-analyst per day, larger files) you would add a cheaper first-pass triage
-model, per-document caching, and page-level chunking with a retrieval step.
-Deliberately out of scope here, as the brief allows.
+natively, so every document goes in whole, untruncated. The deciding factor
+was one provided case that buries its decisive proof of delivery on page 8
+of a 10-page repetitive manifest. Cutting documents short or flattening them
+to plain text risks throwing away exactly the evidence that wins the case.
+At 10 cases with small files, full document processing costs pennies. The
+honest limitation is that at real volume, 80 cases per analyst per day with
+larger files, you would add a cheaper first-pass triage model, per-document
+caching, and page-level chunking with a retrieval step.
 
 **Scheme rules are grounded data, not model memory.** The model is never
 asked to recall Visa or Mastercard rules. `rules.py` holds the simplified
