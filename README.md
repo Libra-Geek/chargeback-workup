@@ -48,6 +48,13 @@ narrative, and every evidence document attached in full.
 
 ## Design decisions and tradeoffs
 
+**Merchant assertions are not evidence.** The system prompt states plainly
+that a merchant's own risk scores and confident language prove nothing. One
+provided case consists entirely of a merchant's internal report concluding
+"we are confident this transaction is legitimate" while the transaction
+metadata shows failed AVS, failed CVV and no 3DS. The tool's job is to say
+that out loud, not be persuaded by tone.
+
 **Documents go to the model natively, no OCR pipeline.** I considered
 Tesseract-style OCR plus text extraction. It is cheaper per page but loses
 document layout, handles photos badly (one case's evidence is a delivery
@@ -71,13 +78,6 @@ rewrite. It is also what handles Visa 10.5 correctly: the rule text stating
 the code is generally not representable travels with the case and overrides
 evidence quality, so strong evidence does not tempt the model into a
 representment that scheme rules do not permit.
-
-**Merchant assertions are not evidence.** The system prompt states plainly
-that a merchant's own risk scores and confident language prove nothing. One
-provided case consists entirely of a merchant's internal report concluding
-"we are confident this transaction is legitimate" while the transaction
-metadata shows failed AVS, failed CVV and no 3DS. The tool's job is to say
-that out loud, not be persuaded by tone.
 
 **Uncertainty is surfaced, not smoothed over.** Every requirement verdict
 carries a confidence level, and genuinely marginal calls go into
